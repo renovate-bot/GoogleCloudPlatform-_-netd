@@ -340,7 +340,7 @@ func TestCalculateAssignedIP(t *testing.T) {
 	for _, tc := range testCases {
 		t.Run(tc.desc, func(t *testing.T) {
 			node := newNodeWithPodCIDRs(tc.podCIDR, tc.podCIDRs)
-			fakeClient := fake.NewSimpleClientset(node)
+			fakeClient := fake.NewClientset(node)
 			mc := &podIPMetricsCollector{
 				clientset: fakeClient,
 				nodeName:  "test-node",
