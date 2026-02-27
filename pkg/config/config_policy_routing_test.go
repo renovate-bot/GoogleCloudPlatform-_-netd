@@ -310,7 +310,7 @@ func TestFillLocalRulesFromNode(t *testing.T) {
 	originLocalTableRuleConfigs := LocalTableRuleConfigs
 	for _, tc := range testCases {
 		t.Run(tc.desc, func(t *testing.T) {
-			fakeClient := fake.NewSimpleClientset(tc.node)
+			fakeClient := fake.NewClientset(tc.node)
 			if err := fillLocalRulesFromNode(context.Background(), fakeClient, tc.node.Name); err != nil {
 				if !tc.wantErr {
 					t.Errorf("fillLocalRulesFromNode() error = %v", err)
@@ -373,7 +373,7 @@ func TestInitPolicyRouting(t *testing.T) {
 			},
 		},
 	}
-	fakeClient := fake.NewSimpleClientset(node)
+	fakeClient := fake.NewClientset(node)
 
 	// Save original state and defer restoration.
 	originalPolicyRoutingConfigSet := PolicyRoutingConfigSet
